@@ -8,10 +8,7 @@ dos estados: están "vivas" o "muertas". El estado de las células evoluciona po
 estado de todas las células se tiene en cuenta para calcular el estado de las mismas al turno
 siguiente.
 
-Por cualquier duda sobre el funcionamiento, o para investigar patrones de organismos, podés
-visitar el artículo en Wikipedia: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-
-## 📋 Reglas
+### 📋 Reglas
 Todas las células se actualizan simultáneamente en cada turno, siguiendo estas reglas:
 1. Una célula muerta con exactamente 3 células vivas vecinas, “nace” (es decir, al turno siguiente 
 estará viva).
@@ -19,27 +16,36 @@ estará viva).
 3. Una célula viva con menos de 2 células vecinas vivas muere de “soledad”
 4. Una célula viva con más de 3 células vecinas vivas muere por “sobrepoblación”
 
+Por cualquier duda sobre el funcionamiento, o para investigar patrones de organismos, podés
+visitar el artículo en Wikipedia: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
 ## ⚙️ Funcionalidades
 
-* El usuario puede activar o desactivar células con un click.
-
-* Cuando el usuario presiona "Iniciar" la simulación comienza. 
-
-* Cuando presiona "Detener" la simulación se pausa y se puede volver a iniciar desde el punto en 
-el que se paro. 
-
-* Cuando presiona "Reiniciar", el tablero se limpia y las generaciones vuelven a cero. El indicador 
-de Generación muestra el turno actual.
+*  El indicador de Generación muestra el turno actual.
 
 * Se trabaja con un tablero “esférico” (entender por “esférico” que los vecinos izquierdos de las 
 células de la columna 0, son las células de la columna N, y lo mismo en todos los límites) de 
 dimensiones variables. Podemos configurar la cantidad de filas y columnas.
 
-* Se puede mmodificar el tiempo de ejecución de los intervalos.
+* Tablero Responsive.
 
 * Se puede ejecutar generaciones paso a paso.
 
 * Existe la posibilidad de guardar y recuperar el estado de la última generación.
+
+### Acciones
+
+* El usuario puede activar o desactivar células con un click, mientras la simulación este parada.
+
+* Cuando el usuario presiona "Iniciar", la simulación comienza. 
+
+* Cuando presiona "Detener", la simulación se pausa. Se puede agregar nuevas células vivas y volver 
+a iniciar desde el punto en el que se paro. 
+
+* Cuando presiona "Reiniciar", el tablero se limpia y las generaciones vuelven a cero. 
+
+* Se puede entrar en el menú de configuracioes y mmodificar el tiempo de ejecución de los intervalos, 
+la cantidad de columnas y filas.
 
 ## 🚀 Instalación 
 
@@ -72,3 +78,7 @@ npm start
 * Notistack
 * Formik
 * Yup
+
+## Link para probar el proyecto
+
+https://ngiudi.github.io/game-of-life/
