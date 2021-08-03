@@ -19,12 +19,10 @@ function App() {
 
       <p className="text-generation">Generación # {count}</p>
 
-      <div className="box-center">
-        <Board/>
-      </div>
+      <Board/>
 
       <div className="box-buttons-bar">
-          <ButtonsGroup/>
+        <ButtonsGroup/>
       </div>
     </SnackbarProvider>   
   );

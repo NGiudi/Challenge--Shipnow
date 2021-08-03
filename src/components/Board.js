@@ -1,27 +1,97 @@
-import React, { useContext } from 'react';
+import React, { createRef, useContext } from 'react';
+
+// imports from material ui.
+import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import AspectRatioIcon from '@material-ui/icons/AspectRatio';
+import { IconButton, Tooltip } from '@material-ui/core';
 
 // import from local files.
+import { INCREMENT_MOVE_BOARD } from '../constants/settings';
 import { BoardContext } from '../context/BoardContext';
 import Cell from './Cell';
 
+// init in the center board.
+let top=50, left=50;
+
 function Board() {
   const { board } = useContext(BoardContext);
+  const refBoard = createRef();
   
+  const centerBoard = () => {
+    top=50;
+    left=50;
+    refBoard.current.style.top = `${top}%`;
+    refBoard.current.style.left = `${left}%`;
+  }
+
+  const moveUp = () => {
+    top -= INCREMENT_MOVE_BOARD;
+    refBoard.current.style.top = `${top}%`;
+  }
+  
+  const moveDown = () => {
+    top += INCREMENT_MOVE_BOARD;
+    refBoard.current.style.top = `${top}%`;
+  }
+  
+  const moveLeft = () => {
+    left -= INCREMENT_MOVE_BOARD;
+    refBoard.current.style.left = `${left}%`;
+  }
+
+  const moveRight = () => {
+    left += INCREMENT_MOVE_BOARD;
+    refBoard.current.style.left = `${left}%`;
+  } 
+
   return (
-    <div className="box-board">
-      {
-        board.map((row, y) => {
-          return (
-            <div key={y} className="flex">
-              {
-                row.map((life, x) => {
-                  return <Cell key={x} life={life} posY={y} posX={x} />
-                })
-              }
-            </div>
-          );
-        })
-      }
+    <div className="box-game">
+      <div className="btn-center">
+        <Tooltip title="Centrar tablero">
+          <IconButton color="inherit" onClick={centerBoard}>
+            <AspectRatioIcon/>
+          </IconButton>
+        </Tooltip>
+      </div>
+
+      <IconButton color="inherit" onClick={moveUp}>
+        <KeyboardArrowUpIcon/>
+      </IconButton>
+      
+      <div className="box-board-flex">
+        <IconButton color="inherit" onClick={moveLeft}>
+          <KeyboardArrowLeftIcon/>
+        </IconButton>
+        
+        <div className="container-box-board">
+          <div ref={refBoard} className="box-board">
+            {
+              board.map((row, y) => {
+                return (
+                  <div key={y} className="flex">
+                    {
+                      row.map((life, x) => {
+                        return <Cell key={x} life={life} posY={y} posX={x} />
+                      })
+                    }
+                  </div>
+                );
+              })
+            }
+          </div>
+        </div>
+        
+        <IconButton color="inherit" onClick={moveRight}>
+          <KeyboardArrowRightIcon/>
+        </IconButton>
+      </div>
+      
+      <IconButton color="inherit" onClick={moveDown}>
+        <KeyboardArrowDownIcon/>
+      </IconButton>   
     </div>
   )
 }
