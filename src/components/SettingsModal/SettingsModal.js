@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
 
 // import from external libraries.
-import { Button, IconButton, Modal, TextField, Tooltip } from '@material-ui/core';
+import { IconButton, Modal, TextField, Tooltip } from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import { useSnackbar } from 'notistack';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
 // import from local files.
-import { MIN_TIME, MAX_ROWS, MAX_COLUMNS } from '../constants/settings';
-import { BoardContext } from '../context/BoardContext';
+import { MIN_TIME, MAX_ROWS, MAX_COLUMNS } from '../../constants/settings';
+import { RedButton, GreenButton } from './settingModalStyles';
+import { BoardContext } from '../../context/BoardContext';
 
 function SettingsModal() {
   const { time, rows, columns, setColumns, setRows, setTime} = useContext(BoardContext);
@@ -119,8 +120,8 @@ function SettingsModal() {
             </div>
                   
             <div className="modal-box-buttons">
-              <Button onClick={handleClose}>Cancelar</Button> 
-              <Button type="submit">Aceptar</Button>
+              <RedButton variant="contained"onClick={handleClose}>Cancelar</RedButton> 
+              <GreenButton variant="contained" type="submit">Aceptar</GreenButton>
             </div>
           </form>
         </div>

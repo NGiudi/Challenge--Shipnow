@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { SnackbarProvider } from 'notistack';
 import { AppBar } from '@material-ui/core';
 
-import SettingsModal from './components/SettingsModal';
+import SettingsModal from './components/SettingsModal/SettingsModal';
 import { BoardContext } from './context/BoardContext';
 import ButtonsGroup from './components/ButtonsGroup'; 
 import Board from './components/Board';
