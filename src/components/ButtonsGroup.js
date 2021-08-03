@@ -31,7 +31,15 @@ function ButtonsGroup() {
   }
 
 
-  // load generation functions.
+  // save generation functions.
+  const actionButton = () => (
+    <>
+      <Button onClick={() => { saveGeneration(true) }}>
+        Reemplazar
+      </Button>
+    </>
+  );
+
   const saveGeneration = (force) => {
     const generation = localStorage.getItem(GENERATION_NAME_LOCALSTORAGE);
 
@@ -44,18 +52,9 @@ function ButtonsGroup() {
       enqueueSnackbar("Generación guardada con éxito.", { variant: 'success' });
     } else {
       // show error message.
-      enqueueSnackbar("Ya existe un juego guardado.", { variant: 'error', action });
+      enqueueSnackbar("Ya existe un juego guardado.", { variant: 'error', action: actionButton });
     }
   }
-
-  const action = () => (
-    <>
-      <Button onClick={() => { saveGeneration(true) }}>
-        Reemplazar
-      </Button>
-    </>
-  );
-
 
   // load generation functions.
   const getSavedGeneration = () => {

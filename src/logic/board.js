@@ -1,12 +1,19 @@
 // create empty board (all cell dead).
-export const createBoard = (rows, columns) => {
+export const createBoard = (rows, columns, paramBoard) => {
   let board = [];
   
   for (let y=0; y<rows; y++) {
     board[y] = [];
       
     for (let x=0; x<columns; x++) {
-      board[y][x] = 0; // dead cell.
+      // set the life value with the value of paramBoard. 
+      // this is used when the saved game loads or change the board dimensions.
+      // the dimensions are verified for the cases that the board is enlarged.
+      if (paramBoard && x < paramBoard[0].length && y < paramBoard.length)
+        board[y][x] = paramBoard[y][x];
+      else
+        // life set 0 (dead) if no received parameter.
+        board[y][x] = 0;
     }
   }
   return board;

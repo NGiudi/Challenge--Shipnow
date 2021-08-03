@@ -32,7 +32,7 @@ export function BoardProvider(props) {
   });
 
   useEffect(() => {
-    setBoard(createBoard(rows, columns));
+    setBoard(board => createBoard(rows, columns, board));
   },[rows, columns]);
 
   return (
