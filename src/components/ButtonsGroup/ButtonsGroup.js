@@ -12,11 +12,11 @@ import StopIcon from '@material-ui/icons/Stop';
 import SaveIcon from '@material-ui/icons/Save';
 
 // import from local files.
-import { BoardContext } from '../context/BoardContext';
-import { createBoard } from '../utils/board';
+import { BoardContext } from '../../context/BoardContext';
+import { createBoard } from '../../utils/board';
 
 // import constants.
-import { GENERATION_NAME_LOCALSTORAGE } from '../constants/settings';
+import { GENERATION_NAME_LOCALSTORAGE } from '../../constants/settings';
 
 function ButtonsGroup() {
   const { board, columns, isRunning, nextGeneration, rows, setBoard, setCount, setColumns, setIsRunning, setRows } = useContext(BoardContext);
@@ -29,7 +29,6 @@ function ButtonsGroup() {
     setBoard(createBoard(rows, columns));
     setCount(0);
   }
-
 
   // save generation functions.
   const actionButton = () => (
@@ -78,7 +77,7 @@ function ButtonsGroup() {
   }
 
   return (
-    <>
+    <div className="box-buttons-bar">
       <ButtonGroup variant="contained" color="primary" size="large">
         {isRunning ? (
           <Tooltip title="Pausar">
@@ -118,7 +117,7 @@ function ButtonsGroup() {
           </Tooltip>
         </Button>
       </ButtonGroup>
-    </>
+    </div>
   );
 }
 

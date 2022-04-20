@@ -1,3 +1,5 @@
+import { NeighborCoordiante } from "./cell";
+
 /**
  * @param {number} rows total number of rows.
  * @param {number} columns total number of columns.
@@ -32,18 +34,15 @@ export const createBoard = (rows, columns, paramBoard) => {
  * @return {number} return the sum of the living neighbors.
  */
 const countLivingNeighbors = (x, y, board, rows, columns) => {
-  let xNeighbors, yNeighbors, sum = 0;
+  let sum = 0;
 
   for(let i=-1; i<2; i++) {
     for(let j=-1; j<2; j++) {  
       // the central cell is not a neighbor.
       if(i !== 0 || j !== 0) {
-        // calculate coordinates of the neighbors.
-        // TODO: poner esto en una funcion.
-        xNeighbors = (x + j + columns) % columns;
-        yNeighbors = (y + i + rows) % rows;
+        const coordinate = NeighborCoordiante(x + j, y + i , rows, columns);
     
-        sum += board[yNeighbors][xNeighbors];
+        sum += board[coordinate.y][coordinate.x];
       }
     }
   }
@@ -53,8 +52,8 @@ const countLivingNeighbors = (x, y, board, rows, columns) => {
 
 /**
  * @param {number} sum number of living neighbors.
- * @param {boolean} life latest cell life value.
- * @return {boolean} new cell life value.
+ * @param {number} life latest cell life value.
+ * @return {number} new cell life value.
  */
 export const getNextLife = (sum, life) => {
   let nextLife = life;
@@ -70,7 +69,6 @@ export const getNextLife = (sum, life) => {
   if (sum === 3)
     nextLife = 1;
 
-  //TODO: return a boolean value.
   return nextLife;
 }
 
