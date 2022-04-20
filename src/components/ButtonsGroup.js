@@ -13,7 +13,7 @@ import SaveIcon from '@material-ui/icons/Save';
 
 // import from local files.
 import { BoardContext } from '../context/BoardContext';
-import { createBoard } from '../logic/board';
+import { createBoard } from '../utils/board';
 
 // import constants.
 import { GENERATION_NAME_LOCALSTORAGE } from '../constants/settings';

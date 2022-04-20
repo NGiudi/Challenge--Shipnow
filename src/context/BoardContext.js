@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 
-import { createBoard, createNextBoard } from '../logic/board';
+import { createBoard, createNextBoard } from '../utils/board';
 
 export const BoardContext = createContext();
 
