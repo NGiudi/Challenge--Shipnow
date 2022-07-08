@@ -1,6 +1,6 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 
-import { BoardContext } from '../context/BoardContext';
+import { BoardContext } from '../../context/BoardContext';
 
 function Cell({ life, posY, posX }) {
   const { board, isRunning, setBoard } = useContext(BoardContext);

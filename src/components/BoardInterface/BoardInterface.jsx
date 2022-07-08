@@ -1,4 +1,4 @@
-import React, { createRef, useContext } from 'react';
+import React from 'react'
 
 // imports from material ui.
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
@@ -9,17 +9,13 @@ import AspectRatioIcon from '@material-ui/icons/AspectRatio';
 import { IconButton, Tooltip } from '@material-ui/core';
 
 // import from local files.
-import { INCREMENT_MOVE_BOARD } from '../constants/settings';
-import { BoardContext } from '../context/BoardContext';
-import Cell from './Cell';
+import { INCREMENT_MOVE_BOARD } from '../../constants/settings';
 
-// init in the center board.
-let top=50, left=50;
+const BoardInterface = (props) => {
+  const { refBoard } = props; 
 
-function Board() {
-  const { board } = useContext(BoardContext);
-  const refBoard = createRef();
-  
+  let top=50, left=50;// init in the center board.
+
   const centerBoard = () => {
     top=50;
     left=50;
@@ -67,21 +63,7 @@ function Board() {
         </IconButton>
         
         <div className="container-box-board">
-          <div ref={refBoard} className="box-board">
-            {
-              board.map((row, y) => {
-                return (
-                  <div key={y} className="flex">
-                    {
-                      row.map((life, x) => {
-                        return <Cell key={x} life={life} posY={y} posX={x} />
-                      })
-                    }
-                  </div>
-                );
-              })
-            }
-          </div>
+          {props.children}
         </div>
         
         <IconButton color="inherit" onClick={moveRight}>
@@ -93,7 +75,7 @@ function Board() {
         <KeyboardArrowDownIcon/>
       </IconButton>   
     </div>
-  )
-}
+  );
+};
 
-export default Board;
+export default BoardInterface;

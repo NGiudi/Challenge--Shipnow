@@ -6,7 +6,7 @@ import { BoardContext } from './context/BoardContext';
 
 import SettingsModal from './components/SettingsModal/SettingsModal';
 import ButtonsGroup from './components/ButtonsGroup/ButtonsGroup'; 
-import Board from './components/Board';
+import Board from './components/Board/Board';
 
 function App() {
   const { count } = useContext(BoardContext);
