@@ -1,7 +1,7 @@
 {
   "name": "game-of-life",
   "version": "0.1.0",
-  "homepage":"http://ngiudi.github.io/game-of-life",
+  "homepage": "http://ngiudi.github.io/game-of-life",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.12.3",

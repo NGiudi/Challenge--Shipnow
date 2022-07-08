@@ -1,4 +1,4 @@
-import { NeighborCoordiante } from "./cell";
+import { getNextLife, countLivingNeighbors } from "./cell";
 
 /**
  * @param {number} rows total number of rows.
@@ -26,53 +26,6 @@ export const createBoard = (rows, columns, paramBoard) => {
 }
 
 /**
- * @param {number} x coordinate of the evaluated cell.
- * @param {number} y coordinate of the evaluated cell.
- * @param {object} board matrix with the life value of the cells.
- * @param {number} rows total number of rows.
- * @param {number} columns total number of columns.
- * @return {number} return the sum of the living neighbors.
- */
-const countLivingNeighbors = (x, y, board, rows, columns) => {
-  let sum = 0;
-
-  for(let i=-1; i<2; i++) {
-    for(let j=-1; j<2; j++) {  
-      // the central cell is not a neighbor.
-      if(i !== 0 || j !== 0) {
-        const coordinate = NeighborCoordiante(x + j, y + i , rows, columns);
-    
-        sum += board[coordinate.y][coordinate.x];
-      }
-    }
-  }
-
-  return sum;
-}
-
-/**
- * @param {number} sum number of living neighbors.
- * @param {number} life latest cell life value.
- * @return {number} new cell life value.
- */
-export const getNextLife = (sum, life) => {
-  let nextLife = life;
-  
-  // DEAD 
-  // Any live cell with fewer than two live neighbours dies, as if by underpopulation.
-  // Any live cell with more than three live neighbours dies, as if by overpopulation.
-  if (sum < 2 || sum > 3)
-    nextLife = 0;
-
-  // LIFE
-  // Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-  if (sum === 3)
-    nextLife = 1;
-
-  return nextLife;
-}
-
-/**
  * @param {object} board latest generation board.
  * @param {number}  rows total number of rows.
  * @param {number}  columns total number of columns.
@@ -85,9 +38,7 @@ export const createNextBoard = (board, rows, columns) => {
     newBoard[y] = [];
 
     for (let x=0; x<columns; x++) {
-      // count live neighbors.
       neighbors = countLivingNeighbors(x, y, board, rows, columns);   
-      // get the new alive status of the cell.
       life = getNextLife(neighbors, board[y][x]);
       // create new board.
       newBoard[y][x] = life; 

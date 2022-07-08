@@ -2,14 +2,16 @@ import React, { createContext, useEffect, useState } from 'react';
 
 import { createBoard, createNextBoard } from '../utils/board';
 
+import { DEFAULT_COLUMS, DEFAULT_TIME, DEFAULT_ROWS } from "../constants/settings";
+
 export const BoardContext = createContext();
 
 export function BoardProvider(props) {
   // settigns variables.
   const [isRunning, setIsRunning] = useState(false);
-  const [columns, setColumns ] = useState(50);
-  const [rows, setRows] = useState(30);
-  const [time, setTime] = useState(300);
+  const [columns, setColumns ] = useState(DEFAULT_COLUMS);
+  const [rows, setRows] = useState(DEFAULT_ROWS);
+  const [time, setTime] = useState(DEFAULT_TIME);
 
   // game variables.
   const [board, setBoard] = useState(createBoard(rows, columns)); 
@@ -23,7 +25,7 @@ export function BoardProvider(props) {
  
   useEffect(() => {
     if (isRunning) {
-      const timer= setTimeout (() => {
+      const timer = setTimeout (() => {
         nextGeneration();
       }, time);
 
