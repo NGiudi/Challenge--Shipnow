@@ -72,7 +72,7 @@ siguiente comando:
 npm start
 ```
 
-## TODO
+## Mejoras a realizar
 - [ ] Dejar de usar material ui.
 - [ ] Crear una carpeta de utils para localstorage.
 - [ ] Guardar más de una generación.
