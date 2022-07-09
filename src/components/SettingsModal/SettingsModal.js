@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import PropTypes from "prop-types";
 
 // import from external libraries.
-import { IconButton, Modal, TextField, Tooltip } from "@material-ui/core";
-import SettingsIcon from "@material-ui/icons/Settings";
+import { Modal, TextField } from "@material-ui/core";
+
 import { useSnackbar } from "notistack";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -12,15 +13,13 @@ import { MIN_TIME, MAX_ROWS, MAX_COLUMNS } from "../../constants/settings";
 import { RedButton, GreenButton } from "./settingModalStyles";
 import { BoardContext } from "../../context/BoardContext";
 
-function SettingsModal() {
+function SettingsModal(props) {
+	const { onClose, show } = props;
+
 	const { time, rows, columns, setColumns, setRows, setTime} = useContext(BoardContext);
   
 	const { enqueueSnackbar } = useSnackbar();
 
-	const [open, setOpen] = useState(false);
-	const handleClose = () => setOpen(false);
-	const handleOpen = () => setOpen(true);
-  
 	// form validation with yup library.
 	const validationSchema = yup.object({
 		localTime: yup
@@ -53,7 +52,7 @@ function SettingsModal() {
 			setRows(values.localRows);
 			setTime(values.localTime);
 			//close modal.
-			handleClose();
+			onClose();
 			// show success message.
 			enqueueSnackbar("Configuraciones Modificadas con éxito.", { variant: "success" });
 		},
@@ -61,15 +60,7 @@ function SettingsModal() {
 
 	return (
 		<>
-			<div className="text-end">
-				<Tooltip title="Configuraciones">
-					<IconButton color="inherit" onClick={handleOpen}>
-						<SettingsIcon/>
-					</IconButton>
-				</Tooltip>
-			</div>
-
-			<Modal open={open} onClose={handleClose}>
+			<Modal open={show} onClose={onClose}>
 				<div className="box-modal">
 					<h2 className="modal-title">Configuraciones</h2>
 
@@ -120,7 +111,7 @@ function SettingsModal() {
 						</div>
                   
 						<div className="modal-box-buttons">
-							<RedButton variant="contained"onClick={handleClose}>Cancelar</RedButton> 
+							<RedButton variant="contained" onClick={onClose}>Cancelar</RedButton> 
 							<GreenButton variant="contained" type="submit">Aceptar</GreenButton>
 						</div>
 					</form>
@@ -129,5 +120,15 @@ function SettingsModal() {
 		</>
 	);
 }
+
+SettingsModal.propTypes = {
+	onClose: PropTypes.func,
+	show: PropTypes.bool,
+};
+
+SettingsModal.defaultProps = {
+	onClose: null,
+	show: false,
+};
 
 export default SettingsModal;

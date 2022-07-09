@@ -1,29 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext }  from "react";
+import PropTypes from "prop-types";
 
 import { useSnackbar } from "notistack";
+import { BoardContext } from "../../../context/BoardContext";
 
-// import from material-ui.
-import { Button, ButtonGroup, Tooltip } from "@material-ui/core";
-import PlayArrowIcon from "@material-ui/icons/PlayArrow";
-import SkipNextIcon from "@material-ui/icons/SkipNext";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import PauseIcon from "@material-ui/icons/Pause";
-import StopIcon from "@material-ui/icons/Stop";
-import SaveIcon from "@material-ui/icons/Save";
+import Button from "../../../design_system/Button/Button";
+import { createBoard } from "../../../utils/board";
 
-// import from local files.
-import { BoardContext } from "../../context/BoardContext";
-import { createBoard } from "../../utils/board";
+import { GENERATION_NAME_LOCALSTORAGE } from "../../../constants/settings";
 
-// import constants.
-import { GENERATION_NAME_LOCALSTORAGE } from "../../constants/settings";
-
-function ButtonsGroup() {
+const ButtonsBar = (props) => {
 	const { board, columns, isRunning, nextGeneration, rows, setBoard, setCount, setColumns, setIsRunning, setRows } = useContext(BoardContext);
 
 	const { enqueueSnackbar } = useSnackbar();
 
-	const handleStart = () => setIsRunning(!isRunning);
+	const handleStart = () => setIsRunning((prevValue) => !prevValue);
 
 	const handleRestart = () => {
 		setBoard(createBoard(rows, columns));
@@ -77,48 +68,40 @@ function ButtonsGroup() {
 	};
 
 	return (
-		<div className="box-buttons-bar">
-			<ButtonGroup variant="contained" color="primary" size="large">
-				{isRunning ? (
-					<Tooltip title="Pausar">
-						<Button onClick={handleStart}>
-							<PauseIcon/>
-						</Button>
-					</Tooltip>
-				) : (
-					<Tooltip title="Iniciar">
-						<Button onClick={handleStart}>
-							<PlayArrowIcon/>
-						</Button>
-					</Tooltip>
-				)}
+		<div>
+			<Button onClick={handleStart}>
+				{isRunning ? "Pausar" : "Iniciar"}
+			</Button>
 
-				<Button onClick={handleRestart} disabled={isRunning}>
-					<Tooltip title="Reiniciar">
-						<StopIcon/>
-					</Tooltip>
-				</Button>
-        
-				<Button onClick={nextGeneration} disabled={isRunning}>
-					<Tooltip title="Próxima generación">
-						<SkipNextIcon/>
-					</Tooltip>
-				</Button>
-        
-				<Button onClick={()=>saveGeneration(false)} disabled={isRunning}>
-					<Tooltip title="Guardar Generación">
-						<SaveIcon/>
-					</Tooltip>
-				</Button>
-        
-				<Button onClick={getSavedGeneration} disabled={isRunning}>
-					<Tooltip title="Cargar Generación">
-						<GetAppIcon/>
-					</Tooltip>
-				</Button>
-			</ButtonGroup>
+			<Button onClick={handleRestart} disabled={isRunning}>
+				Reiniciar
+			</Button>
+			
+			<Button onClick={nextGeneration} disabled={isRunning}>
+				Próxima
+			</Button>
+
+			<Button onClick={()=>saveGeneration(false)} disabled={isRunning}>
+				Guardar
+			</Button>
+
+			<Button onClick={getSavedGeneration} disabled={isRunning}>
+				Cargar
+			</Button>
+			
+			<Button onClick={props.settingsClick}>
+				Configuraciones
+			</Button>
 		</div>
 	);
-}
+};
 
-export default ButtonsGroup;
+ButtonsBar.propTypes = {
+	settingsClick: PropTypes.func,
+};
+
+ButtonsBar.defaultProps = {
+	settingsClick: null,
+};
+
+export default ButtonsBar;

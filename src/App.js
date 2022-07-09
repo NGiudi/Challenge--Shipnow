@@ -1,27 +1,24 @@
-import React, { useContext } from "react";
-
-import { AppBar } from "@material-ui/core";
-
-import { BoardContext } from "./context/BoardContext";
+import React, { useState } from "react";
 
 import SettingsModal from "./components/SettingsModal/SettingsModal";
-import ButtonsGroup from "./components/ButtonsGroup/ButtonsGroup"; 
+
+import TopBar from "./components/TopBar/TopBar";
 import Board from "./components/Board/Board";
 
 function App() {
-	const { count } = useContext(BoardContext);
+	/*TODO: Agregar este valor dentro de un contexto junto a otros valores. */
+	const [openSettingsModal, setOpenSettingsModal] = useState(false);
   
 	return (
 		<>
-			<AppBar position="static">
-				<SettingsModal/>
-			</AppBar>
-
-			<p className="text-generation">Generación # {count}</p>
-
+			<TopBar settingsClick={() => setOpenSettingsModal(true)} />
+			
 			<Board/>
 
-			<ButtonsGroup/>
+			<SettingsModal 
+				onClose={() => setOpenSettingsModal(false)}
+				show={openSettingsModal}
+			/>
 		</>
 	);
 }

@@ -13,16 +13,7 @@ body { background-color: #fafafa; }
 
 .my-2 { margin: 2rem 0;}
 
-
 /* App styles */
-.text-generation {
-  font-size: 1.2rem;
-  font-style: italic;
-  font-weight: bold;
-  margin: 1rem 3rem;
-  text-align: end;
-}
-
 .box-buttons-bar {
   margin: 1rem 0 2rem 0;
   text-align: center;
@@ -32,7 +23,6 @@ body { background-color: #fafafa; }
 
 /* Board styles */
 .box-game {
-  margin: 1rem 2rem;
   position: relative;
   text-align: center;
 }
