@@ -54,24 +54,6 @@ body { background-color: #fafafa; }
   padding: 5px;
 }
 
-
-/* Cell styles */
-.cell {
-  border-radius: 50%;
-  border: 1px solid #999999;
-  height: 10px;
-  margin: 5px;
-  width: 10px;
-}
-  .cell:hover {
-    background: radial-gradient(circle at 2px 2px, rgba(103, 73, 199, 0.7), #000);
-  }
-
-.bgColor {
-  background: radial-gradient(circle at 2px 2px, rgb(27, 161, 181), #000);
-}
-
-
 /* SettingsModal styles */
 .box-modal {
   background-color: #fafafa;

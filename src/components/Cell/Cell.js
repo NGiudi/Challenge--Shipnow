@@ -3,35 +3,26 @@ import PropTypes from "prop-types";
 
 import { BoardContext } from "../../context/BoardContext";
 
+import { CellStyles } from "./Cell.styles";
+
 function Cell({ life, posY, posX }) {
 	const { board, isRunning, setBoard } = useContext(BoardContext);
 
-	// click cell.
 	const handleClick = () => {
 		if (!isRunning) {
 			const newBoard = [...board];
 
-			// change life value.
 			if (newBoard[posY][posX] === 0)
 				newBoard[posY][posX] = 1;
 			else
 				newBoard[posY][posX] = 0;
-      
-			// save new board status.
+
 			setBoard(newBoard);
 		}
 	};
 
 	return (
-		<div onClick={handleClick}>
-			{ // set background color according to life value. 
-				life === 1 ? (
-					<div className="cell bgColor"/>
-				) : (
-					<div className="cell"/>
-				)
-			}
-		</div>
+		<CellStyles isRunning={isRunning} life={life} onClick={handleClick}/>
 	);
 }
 
