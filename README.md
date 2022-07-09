@@ -73,11 +73,11 @@ npm start
 ```
 
 ## 🛠️ Construido con 
-* React
-* Material-UI
-* Notistack
-* Formik
-* Yup
+* react
+* `eslint`: para estructurar el código.
+* material-UI
+* `notistack`: para agregar toasts.
+* `formik` y `yup`: para la validación de formularios.
 
 ## Link para probar el proyecto
 

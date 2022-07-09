@@ -7,23 +7,23 @@ import { getNextLife, countLivingNeighbors } from "./cell";
  * @return {object} board matrix with the life value of the cells.
  */
 export const createBoard = (rows, columns, paramBoard) => {
-  let board = [];
+	let board = [];
   
-  for (let y=0; y < rows; y++) {
-    board[y] = [];
+	for (let y=0; y < rows; y++) {
+		board[y] = [];
 
-    for (let x=0; x < columns; x++) {
-      // received paramBoard when the saved game loads or change the board dimensions.
-      // the dimensions are verified for the cases that the board is enlarged.
-      if (paramBoard && x < paramBoard[0].length && y < paramBoard.length)
-        board[y][x] = paramBoard[y][x];
-      else
-        board[y][x] = 0;
-    }
-  }
+		for (let x=0; x < columns; x++) {
+			// received paramBoard when the saved game loads or change the board dimensions.
+			// the dimensions are verified for the cases that the board is enlarged.
+			if (paramBoard && x < paramBoard[0].length && y < paramBoard.length)
+				board[y][x] = paramBoard[y][x];
+			else
+				board[y][x] = 0;
+		}
+	}
 
-  return board;
-}
+	return board;
+};
 
 /**
  * @param {object} board latest generation board.
@@ -32,17 +32,17 @@ export const createBoard = (rows, columns, paramBoard) => {
  * @return {object} new generation board.
  */
 export const createNextBoard = (board, rows, columns) => {
-  let life, neighbors, newBoard = [];
+	let life, neighbors, newBoard = [];
 
-  for (let y=0; y<rows; y++) {
-    newBoard[y] = [];
+	for (let y=0; y<rows; y++) {
+		newBoard[y] = [];
 
-    for (let x=0; x<columns; x++) {
-      neighbors = countLivingNeighbors(x, y, board, rows, columns);   
-      life = getNextLife(neighbors, board[y][x]);
-      // create new board.
-      newBoard[y][x] = life; 
-    }
-  }
-  return newBoard;
-} 
+		for (let x=0; x<columns; x++) {
+			neighbors = countLivingNeighbors(x, y, board, rows, columns);   
+			life = getNextLife(neighbors, board[y][x]);
+			// create new board.
+			newBoard[y][x] = life; 
+		}
+	}
+	return newBoard;
+}; 
