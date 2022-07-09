@@ -72,6 +72,13 @@ siguiente comando:
 npm start
 ```
 
+## TODO
+- [ ] Dejar de usar material ui.
+- [ ] Crear una carpeta de utils para localstorage.
+- [ ] Guardar más de una generación.
+- [ ] Guardar el nro de la generación en la cual paro.
+- [ ] Mejorar los estilos de la app.
+
 ## 🛠️ Construido con 
 * react
 * `eslint`: para estructurar el código.
