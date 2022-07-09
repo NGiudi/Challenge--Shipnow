@@ -9,9 +9,9 @@ import { Formik, Form } from "formik";
 
 /* components */
 import CloseButton from "./CloseButton/CloseButton";
+import { ColumnsInput, RowsInput, TimeInput } from "../Common/Inputs";
 
 /* ds components */
-import InputField from "../../design_system/InputField/InputField";
 import Button from "../../design_system/Button/Button";
 
 /* styles */
@@ -47,26 +47,11 @@ const Sidebar = () => {
 			>
 				{({ errors, touched }) => (
 					<Form>
-						<InputField
-							iserror={!!(errors.time && touched.time)}
-							label="Intervalo de tiempo"
-							name="time"
-							type="number"
-						/>
-							
-						<InputField
-							iserror={!!(errors.rows && touched.rows)}
-							label="Filas"
-							name="rows"
-							type="number"
-						/>
+						<TimeInput errors={errors} touched={touched}/>
 
-						<InputField
-							iserror={!!(errors.columns && touched.columns)}
-							label="Columnas"
-							name="columns"
-							type="number"
-						/>
+						<RowsInput errors={errors} touched={touched}/>
+
+						<ColumnsInput errors={errors} touched={touched}/>
 
 						<Button type="submit">
 							Guardar Cambios
