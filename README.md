@@ -81,6 +81,7 @@ npm start
 - [ ] Actualizar librerias.
 - [ ] Usar iconos de font awesome.
 - [ ] Migrar los estilos a styled-component.
+- [ ] Agregar patrones ciclicos en la aplicacion.
 
 ## 🛠️ Construido con 
 * react
