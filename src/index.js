@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 
 import { SnackbarProvider } from "notistack";
 
+import { SettingsProvider } from "./context/SettingsContext";
 import { BoardProvider } from "./context/BoardContext";
+
 import App from "./App";
 
 import "./index.css";
@@ -12,7 +14,9 @@ ReactDOM.render(
 	<React.StrictMode>
 		<SnackbarProvider maxSnack={3}>  
 			<BoardProvider>
-				<App />
+				<SettingsProvider>
+					<App />
+				</SettingsProvider>
 			</BoardProvider>
 		</SnackbarProvider>   
 	</React.StrictMode>,

@@ -2,6 +2,8 @@ import React, { useContext }  from "react";
 import PropTypes from "prop-types";
 
 import { useSnackbar } from "notistack";
+
+import { SettingsContext } from "../../../context/SettingsContext";
 import { BoardContext } from "../../../context/BoardContext";
 
 import Button from "../../../design_system/Button/Button";
@@ -9,8 +11,9 @@ import { createBoard } from "../../../utils/board";
 
 import { GENERATION_NAME_LOCALSTORAGE } from "../../../constants/settings";
 
-const ButtonsBar = (props) => {
+const ButtonsBar = () => {
 	const { board, columns, isRunning, nextGeneration, rows, setBoard, setCount, setColumns, setIsRunning, setRows } = useContext(BoardContext);
+	const { setOpenSidebar } = useContext(SettingsContext);
 
 	const { enqueueSnackbar } = useSnackbar();
 
@@ -89,7 +92,7 @@ const ButtonsBar = (props) => {
 				Cargar
 			</Button>
 			
-			<Button onClick={props.settingsClick}>
+			<Button onClick={() => setOpenSidebar(true)}>
 				Configuraciones
 			</Button>
 		</div>

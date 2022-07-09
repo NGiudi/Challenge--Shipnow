@@ -1,24 +1,15 @@
-import React, { useState } from "react";
-
-import SettingsModal from "./components/SettingsModal/SettingsModal";
+import React from "react";
 
 import TopBar from "./components/TopBar/TopBar";
 import Board from "./components/Board/Board";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
-	/*TODO: Agregar este valor dentro de un contexto junto a otros valores. */
-	const [openSettingsModal, setOpenSettingsModal] = useState(false);
-  
 	return (
 		<>
-			<TopBar settingsClick={() => setOpenSettingsModal(true)} />
-			
+			<TopBar />
+			<Sidebar />
 			<Board/>
-
-			<SettingsModal 
-				onClose={() => setOpenSettingsModal(false)}
-				show={openSettingsModal}
-			/>
 		</>
 	);
 }
