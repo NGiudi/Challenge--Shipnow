@@ -1,15 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-// imports from material ui.
-import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
-import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import AspectRatioIcon from "@material-ui/icons/AspectRatio";
-import { IconButton, Tooltip } from "@material-ui/core";
+/* import icons */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-// import from local files.
+/* import from local files */
 import { INCREMENT_MOVE_BOARD } from "../../constants/settings";
 
 const BoardInterface = (props) => {
@@ -45,37 +40,36 @@ const BoardInterface = (props) => {
 	}; 
 
 	return (
-		<div className="box-game">
-			<div className="btn-center">
-				<Tooltip title="Centrar tablero">
-					<IconButton color="inherit" onClick={centerBoard}>
-						<AspectRatioIcon/>
-					</IconButton>
-				</Tooltip>
+		<>
+			<div className="box-game">
+				<div className="btn-center" onClick={centerBoard}>
+					<FontAwesomeIcon icon="expand" />
+				</div>
+				
+				<div onClick={moveUp}>
+					<FontAwesomeIcon icon="chevron-up" />
+				</div>
+      
+				<div className="box-board-flex">
+					<div onClick={moveLeft}>
+						<FontAwesomeIcon icon="chevron-left"/>
+					</div>
+        
+					<div className="container-box-board">
+						{props.children}
+					</div>
+
+					<div onClick={moveRight}>
+						<FontAwesomeIcon icon="chevron-right" />
+					</div>
+				</div>
+
+				<div onClick={moveDown}>
+					<FontAwesomeIcon icon="chevron-down" />  
+				</div>
 			</div>
 
-			<IconButton color="inherit" onClick={moveUp}>
-				<KeyboardArrowUpIcon/>
-			</IconButton>
-      
-			<div className="box-board-flex">
-				<IconButton color="inherit" onClick={moveLeft}>
-					<KeyboardArrowLeftIcon/>
-				</IconButton>
-        
-				<div className="container-box-board">
-					{props.children}
-				</div>
-        
-				<IconButton color="inherit" onClick={moveRight}>
-					<KeyboardArrowRightIcon/>
-				</IconButton>
-			</div>
-      
-			<IconButton color="inherit" onClick={moveDown}>
-				<KeyboardArrowDownIcon/>
-			</IconButton>   
-		</div>
+		</>
 	);
 };
 
