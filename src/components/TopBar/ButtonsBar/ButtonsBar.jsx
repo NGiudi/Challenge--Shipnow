@@ -1,28 +1,28 @@
 import React, { useContext }  from "react";
 import PropTypes from "prop-types";
 
+/* import hooks */
 import { useSnackbar } from "notistack";
 
-import { SettingsContext } from "../../../context/SettingsContext";
+/* import context */
 import { BoardContext } from "../../../context/BoardContext";
 
-import Button from "../../../design_system/Button/Button";
-import { createBoard } from "../../../utils/board";
+/* import components */
+import NextGenerationButton from "../../Common/Buttons/NextGenerationButton/NextGenerationButton";
+import SettingsButton from "../../Common/Buttons/SettingsButton/SettingsButton";
+import ResetButton from "../../Common/Buttons/ResetButton/ResetButton";
+import StartButton from "../../Common/Buttons/StartButton/StartButton";
 
+//! Lo voy a eliminar.
+import Button from "../../../design_system/Button/Button";
+
+/* import constants */
 import { GENERATION_NAME_LOCALSTORAGE } from "../../../constants/settings";
 
 const ButtonsBar = () => {
-	const { board, columns, isRunning, nextGeneration, rows, setBoard, setCount, setColumns, setIsRunning, setRows } = useContext(BoardContext);
-	const { setOpenSidebar } = useContext(SettingsContext);
-
+	const { board, isRunning, setBoard, setCount, setColumns, setRows } = useContext(BoardContext);
+	
 	const { enqueueSnackbar } = useSnackbar();
-
-	const handleStart = () => setIsRunning((prevValue) => !prevValue);
-
-	const handleRestart = () => {
-		setBoard(createBoard(rows, columns));
-		setCount(0);
-	};
 
 	// save generation functions.
 	const actionButton = () => (
@@ -72,17 +72,11 @@ const ButtonsBar = () => {
 
 	return (
 		<div>
-			<Button onClick={handleStart}>
-				{isRunning ? "Pausar" : "Iniciar"}
-			</Button>
+			<StartButton />
 
-			<Button onClick={handleRestart} disabled={isRunning}>
-				Reiniciar
-			</Button>
+			<ResetButton />
 			
-			<Button onClick={nextGeneration} disabled={isRunning}>
-				Próxima
-			</Button>
+			<NextGenerationButton />
 
 			<Button onClick={()=>saveGeneration(false)} disabled={isRunning}>
 				Guardar
@@ -91,10 +85,8 @@ const ButtonsBar = () => {
 			<Button onClick={getSavedGeneration} disabled={isRunning}>
 				Cargar
 			</Button>
-			
-			<Button onClick={() => setOpenSidebar(true)}>
-				Configuraciones
-			</Button>
+
+			<SettingsButton />
 		</div>
 	);
 };

@@ -73,15 +73,13 @@ npm start
 ```
 
 ## Mejoras a realizar
-- [ ] Dejar de usar material ui.
-- [ ] Crear una carpeta de utils para localstorage.
-- [ ] Guardar más de una generación.
-- [ ] Guardar el nro de la generación en la cual paro.
-- [ ] Mejorar los estilos de la app.
-- [ ] Actualizar librerias.
-- [ ] Usar iconos de font awesome.
-- [ ] Migrar los estilos a styled-component.
-- [ ] Agregar patrones ciclicos en la aplicacion.
+- Crear una carpeta de utils para localstorage.
+- Guardar más de una generación.
+- Guardar el nro de la generación en la cual paro.
+- Mejorar los estilos de la app.
+- Actualizar librerias.
+- Migrar los estilos a styled-component.
+- Agregar patrones ciclicos en la aplicacion.
 
 ## 🛠️ Construido con 
 * react
