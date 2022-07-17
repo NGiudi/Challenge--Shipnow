@@ -8,8 +8,8 @@ import { BoardContext } from "../../context/BoardContext";
 import { Formik, Form } from "formik";
 
 /* components */
-import CloseButton from "./CloseButton/CloseButton";
 import { ColumnsInput, RowsInput, TimeInput } from "../Common/Inputs";
+import CloseButton from "./CloseButton/CloseButton";
 
 /* ds components */
 import Button from "../../design_system/Button/Button";

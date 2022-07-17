@@ -5,7 +5,7 @@ import { BoardContext } from "../../context/BoardContext";
 
 import { CellStyles } from "./Cell.styles";
 
-function Cell({ life, posY, posX }) {
+const Cell = ({ life, posY, posX }) => {
 	const { board, isRunning, setBoard } = useContext(BoardContext);
 
 	const handleClick = () => {
@@ -24,7 +24,7 @@ function Cell({ life, posY, posX }) {
 	return (
 		<CellStyles isRunning={isRunning} life={life} onClick={handleClick}/>
 	);
-}
+};
 
 Cell.propTypes = {
 	life: PropTypes.number,

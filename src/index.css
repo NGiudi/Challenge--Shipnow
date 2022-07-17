@@ -7,18 +7,7 @@
 /* generic styles */
 body { background-color: #fafafa; }
 
-.text-end { text-align: end; }
-
 .flex { display: flex; }
-
-.my-2 { margin: 2rem 0;}
-
-/* App styles */
-.box-buttons-bar {
-  margin: 1rem 0 2rem 0;
-  text-align: center;
-  width: 100%;
-}
 
 
 /* Board styles */
@@ -52,32 +41,4 @@ body { background-color: #fafafa; }
   transform: translate(-50%,-50%);
   left: 50%;
   padding: 5px;
-}
-
-/* SettingsModal styles */
-.box-modal {
-  background-color: #fafafa;
-  border-radius: 5px;
-  box-shadow: 5px 4px 17px -4px #121212;
-  left: 50%;
-  max-width: 300px;
-  padding: 1rem 2rem;
-  position: absolute;
-  top: 50%;  
-  transform: translate(-50%,-50%);
-  width: 80%;
-}
-
-.modal-title {
-  font-style: italic;
-  font-weight: bolder;
-  text-align: center;
-  margin: 1.5rem 0 3rem 0;
-}
-
-.modal-box-buttons {
-  display: flex;
-  justify-content: space-around;
-  margin: auto;
-  width: 80%;
 }

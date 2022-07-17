@@ -85,7 +85,6 @@ npm start
 * react
 * `eslint`: para estructurar el código.
 * `styled-components`: para manejar los estilos de los componentes.
-* material-UI
 * `notistack`: para agregar toasts.
 * `formik` y `yup`: para la validación de formularios.
 
