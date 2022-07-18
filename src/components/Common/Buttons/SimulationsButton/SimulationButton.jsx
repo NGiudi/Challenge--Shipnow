@@ -6,14 +6,14 @@ import { SettingsContext } from "../../../../context/SettingsContext";
 /* import components */
 import Button from "../../../../design_system/Button/Button";
 
-const SettingsButton = () => {
+const SimulationButton = () => {
 	const { setOpenSidebar } = useContext(SettingsContext);
 
 	return (
-		<Button onClick={() => setOpenSidebar("settings")}>
-      Configuraciones
+		<Button onClick={() => setOpenSidebar("simulations")}>
+      Simulaciones
 		</Button>
 	);
 };
 
-export default SettingsButton;
+export default SimulationButton;

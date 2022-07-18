@@ -5,7 +5,7 @@ export const SettingsContext = createContext();
 
 export const SettingsProvider = (props) => {
 	// settigns variables.
-	const [openSidebar, setOpenSidebar] = useState(false);
+	const [openSidebar, setOpenSidebar] = useState(null);
 
 	return (
 		<SettingsContext.Provider value={{

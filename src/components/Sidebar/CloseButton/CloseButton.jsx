@@ -10,7 +10,7 @@ const CloseButton = () => {
 	const { setOpenSidebar } = useContext(SettingsContext);
   
 	return (
-		<Button onClick={() => setOpenSidebar(false)}>Volver</Button>
+		<Button onClick={() => setOpenSidebar(null)}>Volver</Button>
 	);
 };
 
