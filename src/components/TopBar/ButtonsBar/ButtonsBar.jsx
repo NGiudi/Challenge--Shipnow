@@ -20,7 +20,7 @@ import Button from "../../../design_system/Button/Button";
 import { GENERATION_NAME_LOCALSTORAGE } from "../../../constants/settings";
 
 const ButtonsBar = () => {
-	const { board, isRunning, setBoard, setCount, setColumns, setRows } = useContext(BoardContext);
+	const { board, count, isRunning, setBoard, setCount, setColumns, setRows } = useContext(BoardContext);
 	
 	const { enqueueSnackbar } = useSnackbar();
 
@@ -40,7 +40,7 @@ const ButtonsBar = () => {
 		// force is used to replace the saved generation.
 		if (!generation || force) {
 			// board is transformed into a string to be stored in the localstorage
-			localStorage.setItem(GENERATION_NAME_LOCALSTORAGE, JSON.stringify(board));
+			localStorage.setItem(GENERATION_NAME_LOCALSTORAGE, JSON.stringify({ board, generation: count }));
 			// show success message.
 			enqueueSnackbar("Generación guardada con éxito.", { variant: "success" });
 		} else {
@@ -51,17 +51,17 @@ const ButtonsBar = () => {
 
 	// load generation functions.
 	const getSavedGeneration = () => {
-		let generation = localStorage.getItem(GENERATION_NAME_LOCALSTORAGE);
+		let storage = localStorage.getItem(GENERATION_NAME_LOCALSTORAGE);
 
 		// check if exist a generation saved.
-		if (generation) {
+		if (storage) {
 			// transform the saved generation in a matrix board.
-			generation = JSON.parse(generation);
+			storage = JSON.parse(storage);
 			// set life values and dimentions board. reset count.
-			setColumns(generation[0].length);
-			setRows(generation.length);
-			setBoard(generation);
-			setCount(0);
+			setColumns(storage.board[0].length);
+			setRows(storage.board.length);
+			setBoard(storage.board);
+			setCount(storage.generation);
 			// show success message.
 			enqueueSnackbar("Generación cargada con éxito.", { variant: "success" });
 		} else {
