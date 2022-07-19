@@ -75,11 +75,11 @@ npm start
 ## Mejoras a realizar
 - Crear una carpeta de utils para localstorage.
 - Guardar más de una generación.
-- Guardar el nro de la generación en la cual paro.
 - Mejorar los estilos de la app.
 - Actualizar librerias.
 - Migrar los estilos a styled-component.
 - Agregar patrones ciclicos en la aplicacion.
+- Agregar los colores de los diferentes themes.
 
 ## 🛠️ Construido con 
 * react

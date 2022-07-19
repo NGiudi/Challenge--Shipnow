@@ -3,6 +3,9 @@ import * as yup from "yup";
 import { MIN_TIME, MAX_ROWS, MAX_COLUMNS } from "../../constants/settings";
 
 const settingsValidationSchema = yup.object({
+	theme: yup
+		.string()
+		.required("Tema requerido"),
 	time: yup
 		.number()
 		.positive("El número debe ser positivo")

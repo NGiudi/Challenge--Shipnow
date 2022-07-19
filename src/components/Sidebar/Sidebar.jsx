@@ -7,28 +7,30 @@ import { useSnackbar } from "notistack";
 import { SettingsContext } from "../../context/SettingsContext";
 import { BoardContext } from "../../context/BoardContext";
 
-/* libraries */
-import { Formik, Form } from "formik";
-
 /* components */
 import { ColumnsInput, RowsInput, TimeInput } from "../Common/Inputs";
 import CloseButton from "./CloseButton/CloseButton";
+import { ThemeSelect } from "../Common/Selects";
 
 /* ds components */
 import Button from "../../design_system/Button/Button";
 
+/* form validation */
+import settingsValidation from "./settingsValidationSchema";
+import { Formik, Form } from "formik";
+
+/* helpers */
+import { setStoragedTheme } from "../../utils/storage";
+
 /* styles */
 import { SidebarWrapper } from "./Sidebar.styles";
 
-/* helpers */
-import settingsValidation from "./settingsValidationSchema";
-
 /* import constants */
-import { GENERATION_NAME_LOCALSTORAGE } from "../../constants/settings";
+import { LOCALSTORAGE_PREFIX } from "../../constants/settings";
 
 const Sidebar = () => {
 	const { board, count, isRunning, time, rows, columns, setColumns, setBoard, setCount, setRows, setTime} = useContext(BoardContext);
-	const { openSidebar, setOpenSidebar } = useContext(SettingsContext);
+	const { openSidebar, theme, setOpenSidebar, setTheme } = useContext(SettingsContext);
 	
 	const { enqueueSnackbar } = useSnackbar();
 
@@ -42,13 +44,13 @@ const Sidebar = () => {
 	);
 
 	const saveGeneration = (force) => {
-		const generation = localStorage.getItem(GENERATION_NAME_LOCALSTORAGE);
+		const generation = localStorage.getItem(`${LOCALSTORAGE_PREFIX}-simulation`);
 
 		// check if exist a generation saved.
 		// force is used to replace the saved generation.
 		if (!generation || force) {
 			// board is transformed into a string to be stored in the localstorage
-			localStorage.setItem(GENERATION_NAME_LOCALSTORAGE, JSON.stringify({ board, generation: count }));
+			localStorage.setItem(`${LOCALSTORAGE_PREFIX}-simulation`, JSON.stringify({ board, generation: count }));
 			// show success message.
 			enqueueSnackbar("Generación guardada con éxito.", { variant: "success" });
 		} else {
@@ -59,7 +61,7 @@ const Sidebar = () => {
 
 	// load generation functions.
 	const getSavedGeneration = () => {
-		let storage = localStorage.getItem(GENERATION_NAME_LOCALSTORAGE);
+		let storage = localStorage.getItem(`${LOCALSTORAGE_PREFIX}-simulation`);
 
 		// check if exist a generation saved.
 		if (storage) {
@@ -86,6 +88,7 @@ const Sidebar = () => {
 			{openSidebar === "settings" && (
 				<Formik
 					initialValues={{
+						theme: theme,
 						time: time,
 						rows: rows,
 						columns: columns
@@ -95,18 +98,29 @@ const Sidebar = () => {
 						setColumns(values.columns);
 						setRows(values.rows);
 						setTime(values.time);
-					
+
+						setTheme(values.theme);
+						setStoragedTheme(values.theme);
+						
 						setOpenSidebar(null);
 					//enqueueSnackbar("Configuraciones Modificadas con éxito.", { variant: "success" });
 					}}
 				>
-					{({ errors, touched }) => (
+					{({ errors, handleChange, touched, values }) => (
 						<Form>
+							{/* TODO: no pasar todos los errors o toucheds */}
 							<TimeInput errors={errors} touched={touched}/>
 
 							<RowsInput errors={errors} touched={touched}/>
 
 							<ColumnsInput errors={errors} touched={touched}/>
+
+							<ThemeSelect 
+								errors={errors}
+								onChange={handleChange}
+								touched={touched}
+								value={values.theme}
+							/>
 
 							<Button type="submit">
 								Guardar Cambios
