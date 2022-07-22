@@ -77,7 +77,6 @@ npm start
 - Guardar más de una generación.
 - Mejorar los estilos de la app.
 - Actualizar librerias.
-- Migrar los estilos a styled-component.
 - Agregar patrones ciclicos en la aplicacion.
 - Agregar los colores de los diferentes themes.
 

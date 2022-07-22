@@ -4,6 +4,12 @@ import PropTypes from "prop-types";
 /* import icons */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+/* import ds components */
+import { Flex } from "../../design_system";
+
+/* import styles */
+import { BoardContainer, BtnCenter, GameArea } from "./BoardInterface.styles";
+
 /* import from local files */
 import { INCREMENT_MOVE_BOARD } from "../../constants/settings";
 
@@ -41,33 +47,33 @@ const BoardInterface = (props) => {
 
 	return (
 		<>
-			<div className="box-game">
-				<div className="btn-center" onClick={centerBoard}>
+			<GameArea>
+				<BtnCenter onClick={centerBoard}>
 					<FontAwesomeIcon icon="expand" />
-				</div>
+				</BtnCenter>
 				
 				<div onClick={moveUp}>
 					<FontAwesomeIcon icon="chevron-up" />
 				</div>
       
-				<div className="box-board-flex">
+				<Flex alignItems="center">
 					<div onClick={moveLeft}>
 						<FontAwesomeIcon icon="chevron-left"/>
 					</div>
-        
-					<div className="container-box-board">
+
+					<BoardContainer>
 						{props.children}
-					</div>
+					</BoardContainer>
 
 					<div onClick={moveRight}>
 						<FontAwesomeIcon icon="chevron-right" />
 					</div>
-				</div>
+				</Flex>
 
 				<div onClick={moveDown}>
 					<FontAwesomeIcon icon="chevron-down" />  
 				</div>
-			</div>
+			</GameArea>
 
 		</>
 	);

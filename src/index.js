@@ -11,11 +11,14 @@ import { BoardProvider } from "./context/BoardContext";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
+
+/* import componets */
 import App from "./App";
 
-import "./index.css";
+/* import styles */
+import GlobalCSS from "./global.css";
 
-/* fontawensome icons. */
+/* fontawensome icons */
 library.add(fas, far);
 
 ReactDOM.render(
@@ -23,6 +26,7 @@ ReactDOM.render(
 		<SnackbarProvider maxSnack={3}>  
 			<BoardProvider>
 				<SettingsProvider>
+					<GlobalCSS />
 					<App />
 				</SettingsProvider>
 			</BoardProvider>

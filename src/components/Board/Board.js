@@ -1,33 +1,42 @@
 import React, { createRef, useContext } from "react";
 
-// import from local files.
-import BoardInterface from "../BoardInterface/BoardInterface";
+/* import context */
 import { BoardContext } from "../../context/BoardContext";
+
+/* import components */
+import BoardInterface from "../BoardInterface/BoardInterface";
 import Cell from "../Cell/Cell";
 
-function Board() {
+/* import ds components */
+import { Flex } from "../../design_system";
+
+/* import styles */
+import { BoardWrapper } from "./Board.styles";
+
+const Board = () => {
 	const { board } = useContext(BoardContext);
+
 	const refBoard = createRef();
   
 	return (
 		<BoardInterface refBoard={refBoard}>
-			<div ref={refBoard} className="box-board">
+			<BoardWrapper ref={refBoard}>
 				{
 					board.map((row, y) => {
 						return (
-							<div key={y} className="flex">
+							<Flex key={y}>
 								{
 									row.map((life, x) => {
 										return <Cell key={x} life={life} posY={y} posX={x} />;
 									})
 								}
-							</div>
+							</Flex>
 						);
 					})
 				}
-			</div>
+			</BoardWrapper>
 		</BoardInterface>
 	);
-}
+};
 
 export default Board;
