@@ -1,78 +1,70 @@
 import React, { useContext } from "react";
 
-/* import hooks */
-import { useSnackbar } from "notistack";
-
 /* import context */
 import { BoardContext } from "../../../../context/BoardContext";
 
 /* ds components */
 import { Button } from "../../../../design_system";
 
+/* import utils */
+import { getLocalStorage, setLocalStorage } from "../../../../utils/storage";
+
 /* import constants */
-import { LOCALSTORAGE_PREFIX } from "../../../../constants/settings";
+import { MAX_GENERATINS_STORAGED } from "../../../../constants/settings";
 
 const SimulationSidebarTab = () => {
-	const { board, count, isRunning, setColumns, setBoard, setCount, setRows } = useContext(BoardContext);
+	const { board, count, isRunning } = useContext(BoardContext);
 	
-	const { enqueueSnackbar } = useSnackbar();
-  
+	//Para cargar el tablero tengo que usar la siguiente lógica. 
+	//setColumns(storage.board[0].length);
+	//setRows(storage.board.length);
+	//setBoard(storage.board);
+	//setCount(storage.generation);
 
-	// save generation functions.
-	const actionButton = () => (
-		<>
-			<Button onClick={() => { saveGeneration(true); }}>
-        Reemplazar
-			</Button>
-		</>
-	);
+	const saveGeneration = () => {
+		let generations = getLocalStorage("simulation");
 
-	const saveGeneration = (force) => {
-		const generation = localStorage.getItem(`${LOCALSTORAGE_PREFIX}-simulation`);
-
-		// check if exist a generation saved.
-		// force is used to replace the saved generation.
-		if (!generation || force) {
-			// board is transformed into a string to be stored in the localstorage
-			localStorage.setItem(`${LOCALSTORAGE_PREFIX}-simulation`, JSON.stringify({ board, generation: count }));
-			// show success message.
-			enqueueSnackbar("Generación guardada con éxito.", { variant: "success" });
+		if (generations === null) {
+			generations = [];
 		} else {
-			// show error message.
-			enqueueSnackbar("Ya existe un juego guardado.", { variant: "error", action: actionButton });
+			generations = JSON.parse(generations);
+		}
+
+		if (generations.length < MAX_GENERATINS_STORAGED) {
+			generations.push({ board, generation: count });
+			setLocalStorage("simulation", JSON.stringify(generations));
+		} else {
+			// TODO: agregar mensaje de espacios completados. 
 		}
 	};
 
-	// load generation functions.
-	const getSavedGeneration = () => {
-		let storage = localStorage.getItem(`${LOCALSTORAGE_PREFIX}-simulation`);
-
+	const getSavedGenerations = () => {
+		let generations = getLocalStorage("simulation");
+		generations = JSON.parse(generations);
+		
 		// check if exist a generation saved.
-		if (storage) {
-			// transform the saved generation in a matrix board.
-			storage = JSON.parse(storage);
-			// set life values and dimentions board. reset count.
-			setColumns(storage.board[0].length);
-			setRows(storage.board.length);
-			setBoard(storage.board);
-			setCount(storage.generation);
-			// show success message.
-			enqueueSnackbar("Generación cargada con éxito.", { variant: "success" });
+		if (generations) {
+			
+			return generations.map((generation, i) => (
+				<div key={`saved-generation-${i}`}>
+					<p>{i+1}</p>
+					<p>Generación: {generation.generation}</p>
+				</div>
+			));			
 		} else {
-			// show error message.
-			enqueueSnackbar("No hay ninguna generación guardada.", { variant: "error"});
+			return (
+				<p>Sin generaciones guardadas</p>
+			);
 		}
 	};
 
 	return (
 		<>
-			<Button onClick={() => saveGeneration(false)} disabled={isRunning}>
+			<Button onClick={() => saveGeneration()} disabled={isRunning}>
 				Guardar
 			</Button>
 
-			<Button onClick={getSavedGeneration} disabled={isRunning}>
-				Cargar
-			</Button>
+			{getSavedGenerations()}
 		</>
 	);
 };

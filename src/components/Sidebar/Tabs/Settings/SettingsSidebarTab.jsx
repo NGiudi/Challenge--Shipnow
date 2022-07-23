@@ -15,9 +15,6 @@ import { Button } from "../../../../design_system";
 import settingsValidation from "./settingsValidationSchema";
 import { Formik, Form } from "formik";
 
-/* helpers */
-import { setStoragedTheme } from "../../../../utils/storage";
-
 const SettingsSidebarTab = () => {
 	const { time, rows, columns, setColumns, setRows, setTime} = useContext(BoardContext);
 	const { theme, setOpenSidebar, setTheme } = useContext(SettingsContext);
@@ -33,10 +30,9 @@ const SettingsSidebarTab = () => {
 		setColumns(values.columns);
 		setRows(values.rows);
 		setTime(values.time);
-		setStoragedTheme(values.theme);
-						
+		
 		setOpenSidebar(null);
-		//enqueueSnackbar("Configuraciones Modificadas con éxito.", { variant: "success" });
+		//TODO: Agregar mensaje de error.
 	};
 
 	return (

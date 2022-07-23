@@ -1,4 +1,5 @@
 export const LOCALSTORAGE_PREFIX = "ng--game_of_life";
+export const MAX_GENERATINS_STORAGED = 10;
 
 export const INCREMENT_MOVE_BOARD = 2; // value in percentage.
 
