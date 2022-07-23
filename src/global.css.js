@@ -6,5 +6,8 @@ export default createGlobalStyle`
     padding: 0;
   }
 
-  body { background-color: #fafafa; }
+  body { 
+    background-color: ${(props) => props.theme.backgroundColor};
+    color: ${(props) => props.theme.color};
+  }
 `;

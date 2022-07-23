@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { SettingsContext } from "../../../../context/SettingsContext";
 
 /* import components */
-import Button from "../../../../design_system/Button/Button";
+import { Button } from "../../../../design_system";
 
 const SimulationButton = () => {
 	const { setOpenSidebar } = useContext(SettingsContext);

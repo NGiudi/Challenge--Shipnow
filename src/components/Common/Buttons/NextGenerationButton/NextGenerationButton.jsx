@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 import { BoardContext } from "../../../../context/BoardContext";
 
 /* import components */
-import Button from "../../../../design_system/Button/Button";
+import { Button } from "../../../../design_system";
 
 const NextGenerationButton = () => {
 	const { isRunning, nextGeneration } = useContext(BoardContext);

@@ -13,7 +13,7 @@ import CloseButton from "./CloseButton/CloseButton";
 import { ThemeSelect } from "../Common/Selects";
 
 /* ds components */
-import Button from "../../design_system/Button/Button";
+import { Button } from "../../design_system";
 
 /* form validation */
 import settingsValidation from "./settingsValidationSchema";
