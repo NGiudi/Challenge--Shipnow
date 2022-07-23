@@ -1,16 +1,19 @@
 import React, { createContext, useState } from "react";
 import PropTypes from "prop-types";
 
-import { getStoragedTheme } from "../utils/storage";
+import { getStoragedTheme, setStoragedTheme } from "../utils/storage";
 
 export const SettingsContext = createContext();
 
 export const SettingsProvider = (props) => {
 	// settigns variables.
 	const [openSidebar, setOpenSidebar] = useState(null);
-	const [theme, setTheme] = useState(() => {
-		return getStoragedTheme();
-	}); //TODO: setear el valor de preferencia de la computadora.
+	const [theme, setThemeState] = useState(() => getStoragedTheme()); //TODO: setear el valor de preferencia de la computadora.
+
+	const setTheme = (theme) => {
+		setStoragedTheme(theme);
+		setThemeState(theme);
+	};
 
 	return (
 		<SettingsContext.Provider value={{

@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-import { MIN_TIME, MAX_ROWS, MAX_COLUMNS } from "../../constants/settings";
+import { MIN_TIME, MAX_ROWS, MAX_COLUMNS } from "../../../../constants/settings";
 
 const settingsValidationSchema = yup.object({
 	theme: yup
