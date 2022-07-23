@@ -8,13 +8,14 @@ import { Button } from "../../../../design_system";
 
 /* import utils */
 import { getLocalStorage, setLocalStorage } from "../../../../utils/storage";
+import { createBoard } from "../../../../utils/board";
 import produce from "immer";
 
 /* import constants */
 import { MAX_GENERATINS_STORAGED } from "../../../../constants/settings";
 
 const SimulationSidebarTab = () => {
-	const { board, count, isRunning, setBoard, setColumns, setCount, setRows } = useContext(BoardContext);
+	const { board, columns, count, rows, isRunning, setBoard, setColumns, setCount, setRows } = useContext(BoardContext);
 	
 	const [savedGenerations, setSavedGenerations] = useState([]);
 
@@ -69,8 +70,16 @@ const SimulationSidebarTab = () => {
 		});
 	};
 
+	const createRandomBoard = () => {
+		setBoard(createBoard(rows, columns, null, true));
+	};
+
 	return (
 		<>
+			<button onClick={createRandomBoard}>
+				crear tablero random
+			</button>
+
 			<Button onClick={() => saveGeneration()} disabled={isRunning}>
 				Guardar
 			</Button>

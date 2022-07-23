@@ -1,12 +1,14 @@
 import { getNextLife, countLivingNeighbors } from "./cell";
+import { randomNumber } from "./numbers";
 
 /**
  * @param {number} rows total number of rows.
  * @param {number} columns total number of columns.
  * @param {object} board saved matrix with the life value of the cells.
+ * @param {boolean} random if true create a random board.
  * @return {object} board matrix with the life value of the cells.
  */
-export const createBoard = (rows, columns, paramBoard) => {
+export const createBoard = (rows, columns, paramBoard = null, random = false) => {
 	let board = [];
   
 	for (let y=0; y < rows; y++) {
@@ -17,6 +19,8 @@ export const createBoard = (rows, columns, paramBoard) => {
 			// the dimensions are verified for the cases that the board is enlarged.
 			if (paramBoard && x < paramBoard[0].length && y < paramBoard.length)
 				board[y][x] = paramBoard[y][x];
+			else if (random)
+				board[y][x] = randomNumber(2);
 			else
 				board[y][x] = 0;
 		}
