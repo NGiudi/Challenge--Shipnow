@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 
 /* context */
-import { SettingsContext } from "../../../context/SettingsContext";
+import { SettingsContext } from "../../../../context/SettingsContext";
 
 /* components */
-import { Button } from "../../../design_system";
+import { Button } from "../../../../design_system";
 
 const CloseButton = () => {
 	const { setOpenSidebar } = useContext(SettingsContext);
