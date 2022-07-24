@@ -5,17 +5,24 @@ import { BoardContext } from "../../context/BoardContext";
 
 import { CellStyles } from "./Cell.styles";
 
+import { neighborCoordiante } from "../../utils/cell";
+
 const Cell = ({ life, posY, posX }) => {
-	const { board, isRunning, setBoard } = useContext(BoardContext);
+	const { board, columns, isRunning, modelToInsert, rows, setBoard } = useContext(BoardContext);
 
 	const handleClick = () => {
 		if (!isRunning) {
+			const modelColumns = modelToInsert[0].length;
+			const modelRows = modelToInsert.length;
 			const newBoard = [...board];
 
-			if (newBoard[posY][posX] === 0)
-				newBoard[posY][posX] = 1;
-			else
-				newBoard[posY][posX] = 0;
+			/* TODO: agregar esto en una función */
+			for (let y = 0; y < modelRows; y++) {
+				for (let x = 0; x < modelColumns; x++) {
+					const pos = neighborCoordiante(posX + x, posY + y, rows, columns);
+					newBoard[pos.y][pos.x] = modelToInsert[y][x];
+				}
+			}
 
 			setBoard(newBoard);
 		}

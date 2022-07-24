@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
+
+/* import context */
+import { BoardContext } from "../../../context/BoardContext";
 
 /* import components */
 import {
@@ -10,7 +13,16 @@ import {
 	StartButton,
 } from "../../Common/Buttons";
 
+/* import models */
+import { MODELS } from "../../../constants/models";
+
 const ButtonsBar = () => {
+	const { setModelToInsert } = useContext(BoardContext);
+	
+	const handleChangeModel = (e) => {
+		setModelToInsert(JSON.parse(e.target.value));
+	};
+
 	return (
 		<div>
 			<StartButton />
@@ -22,6 +34,14 @@ const ButtonsBar = () => {
 			<SimulationButton />
 
 			<SettingsButton />
+
+			{/* TODO: poner este código en un componente */}
+			<select onChange={handleChangeModel}>
+				{MODELS.map((model, i) => (
+					<option key={`model-option-${i}`} value={JSON.stringify(model.cells)}>
+						{model.name}
+					</option>))}
+			</select>
 		</div>
 	);
 };

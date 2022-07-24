@@ -4,13 +4,15 @@ import PropTypes from "prop-types";
 import { createBoard, createNextBoard } from "../utils/board";
 
 import { DEFAULT_COLUMS, DEFAULT_TIME, DEFAULT_ROWS } from "../constants/settings";
+import { MODELS } from "../constants/models";
 
 export const BoardContext = createContext();
 
 export const BoardProvider = (props) => {
 	// settigns variables.
-	const [isRunning, setIsRunning] = useState(false);
+	const [modelToInsert, setModelToInsert] = useState(MODELS[0].cells);
 	const [columns, setColumns ] = useState(DEFAULT_COLUMS);
+	const [isRunning, setIsRunning] = useState(false);
 	const [rows, setRows] = useState(DEFAULT_ROWS);
 	const [time, setTime] = useState(DEFAULT_TIME);
 
@@ -40,6 +42,7 @@ export const BoardProvider = (props) => {
 
 	return (
 		<BoardContext.Provider value={{
+			modelToInsert, setModelToInsert,
 			isRunning, setIsRunning,
 			count, setCount,
 			board, setBoard,

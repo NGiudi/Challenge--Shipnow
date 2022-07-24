@@ -76,6 +76,7 @@ const SimulationSidebarTab = () => {
 
 	return (
 		<>
+			{/* TODO: Poner el botón en un componente a parte */}
 			<button onClick={createRandomBoard}>
 				crear tablero random
 			</button>

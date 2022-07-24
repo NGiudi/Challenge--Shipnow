@@ -5,7 +5,7 @@
  * @param {number} columns total number of columns.
  * @return {object} return coordinate of neighbor.
  */
-const neighborCoordiante = (x, y, rows, columns) => {
+export const neighborCoordiante = (x, y, rows, columns) => {
 	const xNeighbors = (x + columns) % columns;
 	const yNeighbors = (y + rows) % rows;
 
