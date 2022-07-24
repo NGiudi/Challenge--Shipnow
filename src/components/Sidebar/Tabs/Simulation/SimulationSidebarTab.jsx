@@ -3,19 +3,21 @@ import React, { useContext , useEffect, useState} from "react";
 /* import context */
 import { BoardContext } from "../../../../context/BoardContext";
 
+/* import components */
+import { RandomBoardButton } from "../../../Common/Buttons";
+
 /* ds components */
 import { Button } from "../../../../design_system";
 
 /* import utils */
 import { getLocalStorage, setLocalStorage } from "../../../../utils/storage";
-import { createBoard } from "../../../../utils/board";
 import produce from "immer";
 
 /* import constants */
 import { MAX_GENERATINS_STORAGED } from "../../../../constants/settings";
 
 const SimulationSidebarTab = () => {
-	const { board, columns, count, rows, isRunning, setBoard, setColumns, setCount, setRows } = useContext(BoardContext);
+	const { board, count, isRunning, setBoard, setColumns, setCount, setRows } = useContext(BoardContext);
 	
 	const [savedGenerations, setSavedGenerations] = useState([]);
 
@@ -70,16 +72,9 @@ const SimulationSidebarTab = () => {
 		});
 	};
 
-	const createRandomBoard = () => {
-		setBoard(createBoard(rows, columns, null, true));
-	};
-
 	return (
 		<>
-			{/* TODO: Poner el botón en un componente a parte */}
-			<button onClick={createRandomBoard}>
-				crear tablero random
-			</button>
+			<RandomBoardButton />
 
 			<Button onClick={() => saveGeneration()} disabled={isRunning}>
 				Guardar
