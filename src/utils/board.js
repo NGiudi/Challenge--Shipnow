@@ -1,12 +1,14 @@
-import { getNextLife, countLivingNeighbors } from "./cell";
+/* import utils */
+import { countLivingNeighbors, getNextLife, neighborCoordiante } from "./cell";
 import { randomNumber } from "./numbers";
+import { produce } from "immer";
 
 /**
  * @param {number} rows total number of rows.
  * @param {number} columns total number of columns.
- * @param {object} board saved matrix with the life value of the cells.
+ * @param {array} board saved matrix with the life value of the cells.
  * @param {boolean} random if true create a random board.
- * @return {object} board matrix with the life value of the cells.
+ * @return {array} board matrix with the life value of the cells.
  */
 export const createBoard = (rows, columns, paramBoard = null, random = false) => {
 	let board = [];
@@ -30,10 +32,10 @@ export const createBoard = (rows, columns, paramBoard = null, random = false) =>
 };
 
 /**
- * @param {object} board latest generation board.
+ * @param {array} board latest generation board.
  * @param {number}  rows total number of rows.
  * @param {number}  columns total number of columns.
- * @return {object} new generation board.
+ * @return {array} new generation board.
  */
 export const createNextBoard = (board, rows, columns) => {
 	let life, neighbors, newBoard = [];
@@ -49,4 +51,35 @@ export const createNextBoard = (board, rows, columns) => {
 		}
 	}
 	return newBoard;
-}; 
+};
+
+/**
+ * @param {array} board current board.
+ * @param {array}  model matrix of the selected model.
+ * @param {object}  cellPos coordinates of the selected cell.
+ * @return {array} new board.
+ */
+export const addModelIntoBoard = (board, model, cellPos) => {
+	const modelColumns = model[0].length;
+	const modelRows = model.length;
+	
+	const newBoard = produce(board, (draft) => {
+		for (let y = 0; y < modelRows; y++) {
+			for (let x = 0; x < modelColumns; x++) {
+				const currentX = cellPos.x + x;
+				const currentY = cellPos.y + y;
+
+				const boardColums = board[0].length;
+				const boardRows = board.length;
+ 
+				const pos = neighborCoordiante(currentX, currentY, boardRows, boardColums);
+				
+				draft[pos.y][pos.x] = model[y][x];
+			}
+		}
+
+		return draft;
+	});
+
+	return newBoard;
+};

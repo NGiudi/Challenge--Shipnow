@@ -1,29 +1,23 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
+/* import context*/
 import { BoardContext } from "../../context/BoardContext";
 
+/* import styles */
 import { CellStyles } from "./Cell.styles";
 
-import { neighborCoordiante } from "../../utils/cell";
+/* import utils */
+import { addModelIntoBoard } from "../../utils/board";
 
 const Cell = ({ life, posY, posX }) => {
-	const { board, columns, isRunning, modelToInsert, rows, setBoard } = useContext(BoardContext);
+	const { board, isRunning, modelToInsert, setBoard } = useContext(BoardContext);
 
 	const handleClick = () => {
 		if (!isRunning) {
-			const modelColumns = modelToInsert[0].length;
-			const modelRows = modelToInsert.length;
-			const newBoard = [...board];
+			const pos = { x: posX, y: posY };
 
-			/* TODO: agregar esto en una función */
-			for (let y = 0; y < modelRows; y++) {
-				for (let x = 0; x < modelColumns; x++) {
-					const pos = neighborCoordiante(posX + x, posY + y, rows, columns);
-					newBoard[pos.y][pos.x] = modelToInsert[y][x];
-				}
-			}
-
+			const newBoard = addModelIntoBoard(board, modelToInsert, pos);
 			setBoard(newBoard);
 		}
 	};
@@ -39,7 +33,7 @@ Cell.propTypes = {
 	posY: PropTypes.number,
 };
 
-Cell.propTypes = {
+Cell.defaultProps = {
 	life: 0, // values: 0 || 1
 	posX: 0,
 	posY: 0,
