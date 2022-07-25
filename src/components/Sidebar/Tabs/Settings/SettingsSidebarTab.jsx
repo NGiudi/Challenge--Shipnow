@@ -51,8 +51,8 @@ const SettingsSidebarTab = () => {
 
 						<ColumnsInput errors={errors} touched={touched}/>
 
-						<Button type="submit">
-						Guardar Cambios
+						<Button fullWidth type="submit">
+							Guardar cambios
 						</Button>
 					</Form>
 				)}
