@@ -8,7 +8,7 @@ const RowsInput = (props) => {
 
 	return (
 		<InputField
-			iserror={!!(errors.rows && touched.rows)}
+			iserror={errors.rows && touched.rows}
 			label="Filas"
 			name="rows"
 			type="number"

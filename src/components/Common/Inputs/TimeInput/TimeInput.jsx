@@ -8,7 +8,7 @@ const TimeInput = (props) => {
 
 	return (
 		<InputField
-			iserror={!!(errors.time && touched.time)}
+			iserror={errors.time && touched.time}
 			label="Intervalo de tiempo"
 			name="time"
 			type="number"

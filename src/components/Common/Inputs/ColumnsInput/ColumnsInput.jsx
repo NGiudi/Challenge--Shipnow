@@ -8,7 +8,7 @@ const ColumnsInput = (props) => {
 
 	return (
 		<InputField
-			iserror={!!(errors.columns && touched.columns)}
+			iserror={errors.columns && touched.columns}
 			label="Columnas"
 			name="columns"
 			type="number"

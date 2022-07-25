@@ -12,7 +12,8 @@ const InputField = (props) => {
 	return (
 		<>
 			<Label>{label}</Label>
-			<Input autoComplete="off" name={name} iserror={iserror.toString()} {...others} />
+
+			<Input autoComplete="off" name={name} iserror={iserror} {...others} />
 
 			<ErrorWrapper>
 				<ErrorMessage name={name} />
@@ -22,13 +23,13 @@ const InputField = (props) => {
 };
 
 InputField.propTypes = {
-	iserror: PropTypes.bool,
+	iserror: PropTypes.string,
 	label: PropTypes.string,
 	name: PropTypes.string,
 };
 
 InputField.defaultProps = {
-	iserror: false,
+	iserror: null,
 	name: "",
 	label: "",
 };

@@ -3,7 +3,7 @@ const darkTheme = {
 		backgroundColor: "#191919",
 		color: "#F9F9F9",
 	},
-	buttons: {
+	button: {
 		ghost: {
 			backgroundColor: "transparent",
 			backgroundHover: "#242424",
@@ -14,6 +14,10 @@ const darkTheme = {
 			backgroundHover: "#192B42",
 			color: "#F9F9F9",
 		},
+	},
+	input: {
+		backgroundColor: "transparent",
+		color: "#F9F9F9",
 	},
 	sideBar: {
 		backgroundColor: "#191919",
