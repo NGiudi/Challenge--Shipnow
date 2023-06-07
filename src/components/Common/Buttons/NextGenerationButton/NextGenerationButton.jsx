@@ -10,7 +10,7 @@ const NextGenerationButton = () => {
 	const { isRunning, nextGeneration } = useContext(BoardContext);
 
 	return (
-		<Button onClick={nextGeneration} disabled={isRunning}>
+		<Button  disabled={isRunning} margin="0 8px 0 0" onClick={nextGeneration}>
 			Próxima
 		</Button>
 	);

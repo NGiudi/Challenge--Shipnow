@@ -11,6 +11,7 @@ export const BtnStyles = styled.button`
     background-color: ${props.theme.button[props.kind].backgroundColor};
     border-radius: ${props.round ? "17px" : "4px"};
     color: ${props.theme.button[props.kind].color};
+    margin: ${props.margin};
     width: ${props.fullWidth ? "100%" : "auto"};
 
     &:hover {

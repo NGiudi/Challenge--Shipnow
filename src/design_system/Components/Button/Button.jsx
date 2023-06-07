@@ -17,6 +17,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
 	fullWidth: false,
+	margin: "auto",
 	round: false,
 	kind: "solid",
 };

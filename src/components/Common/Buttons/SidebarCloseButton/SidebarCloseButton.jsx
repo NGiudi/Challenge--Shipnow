@@ -12,8 +12,9 @@ const CloseButton = () => {
 	return (
 		<Button 
 			fullWidth
-			onClick={() => setOpenSidebar(null)}
 			kind="ghost"
+			margin="0 0 12px 0"
+			onClick={() => setOpenSidebar(null)}
 		>
 			Volver
 		</Button>

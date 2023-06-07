@@ -10,7 +10,7 @@ const SettingsButton = () => {
 	const { setOpenSidebar } = useContext(SettingsContext);
 
 	return (
-		<Button onClick={() => setOpenSidebar("settings")}>
+		<Button margin="0 8px 0 0" onClick={() => setOpenSidebar("settings")}>
       Configuraciones
 		</Button>
 	);

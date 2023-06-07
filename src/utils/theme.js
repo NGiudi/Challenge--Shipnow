@@ -1,7 +1,5 @@
-/* import utils */
 import { getLocalStorage } from "./storage";
 
-/* import constants */
 import { DEFAULT_THEME } from "../constants/settings";
 
 export const getTheme = () => {

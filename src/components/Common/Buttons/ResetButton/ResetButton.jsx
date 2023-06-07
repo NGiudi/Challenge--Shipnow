@@ -18,7 +18,7 @@ const ResetButton = () => {
 	};
 
 	return (
-		<Button onClick={handleRestart} disabled={isRunning}>
+		<Button disabled={isRunning} margin="0 8px 0 0" onClick={handleRestart}>
 				Reiniciar
 		</Button>
 	);

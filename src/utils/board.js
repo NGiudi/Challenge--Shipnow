@@ -1,6 +1,6 @@
-/* import utils */
 import { countLivingNeighbors, getNextLife, neighborCoordiante } from "./cell";
 import { randomNumber } from "./numbers";
+
 import { produce } from "immer";
 
 /**

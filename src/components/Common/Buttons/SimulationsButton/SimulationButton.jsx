@@ -10,7 +10,7 @@ const SimulationButton = () => {
 	const { setOpenSidebar } = useContext(SettingsContext);
 
 	return (
-		<Button onClick={() => setOpenSidebar("simulations")}>
+		<Button margin="0 8px 0 0" onClick={() => setOpenSidebar("simulations")}>
       Simulaciones
 		</Button>
 	);
