@@ -17,7 +17,7 @@ const RandomBoardButton = () => {
 	};
 
 	return (
-		<Button onClick={createRandomBoard}>
+		<Button fullWidth onClick={createRandomBoard}>
       Crear tablero random
 		</Button>
 	);

@@ -7,11 +7,13 @@ import { BoardContext } from "../../../../context/BoardContext";
 import { RandomBoardButton } from "../../../Common/Buttons";
 
 /* ds components */
-import { Button } from "../../../../design_system";
+import { Button, Flex } from "../../../../design_system";
+import { ButtonWrapper } from "./SimulationSidebarTab.styles";
 
 /* import utils */
 import { getLocalStorage, setLocalStorage } from "../../../../utils/storage";
 import produce from "immer";
+
 
 /* import constants */
 import { MAX_GENERATINS_STORAGED } from "../../../../constants/settings";
@@ -74,11 +76,16 @@ const SimulationSidebarTab = () => {
 
 	return (
 		<>
-			<RandomBoardButton />
+			<Flex justify="space-between">
+				<ButtonWrapper>
+					<RandomBoardButton />
+				</ButtonWrapper>
 
-			<Button onClick={() => saveGeneration()} disabled={isRunning}>
-				Guardar
-			</Button>
+				<Button disabled={isRunning} onClick={() => saveGeneration()}>
+					Guardar
+				</Button>
+			</Flex>
+			
 
 			{/* TODO:  acomodar la informacion */ }
 			{savedGenerations && savedGenerations.length > 0 ? (

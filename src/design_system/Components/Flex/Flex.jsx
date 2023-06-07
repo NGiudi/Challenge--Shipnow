@@ -12,11 +12,13 @@ const Flex = (props) => {
 Flex.propTypes = {
 	alignItems: PropTypes.string,
 	children: PropTypes.node,
+	justify: PropTypes.string,
 };
 
 Flex.defaultProps = {
 	alignItems: "start",
 	children: null,
+	justify: "start",
 };
 
 export default Flex;

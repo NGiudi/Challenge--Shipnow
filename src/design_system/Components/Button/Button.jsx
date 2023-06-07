@@ -11,15 +11,16 @@ const Button = (props) => {
 
 Button.propTypes = {
 	fullWidth: PropTypes.bool,
-	round: PropTypes.bool,
 	kind: PropTypes.oneOf(["ghost", "solid"]),
+	margin: PropTypes.string,
+	round: PropTypes.bool,
 };
 
 Button.defaultProps = {
 	fullWidth: false,
-	margin: "auto",
-	round: false,
 	kind: "solid",
+	margin: "0px",
+	round: false,
 };
 
 export default Button;
